@@ -1,0 +1,21 @@
+1- Printar "Hello World"
+2- Printar valor 5 usar var_dump
+3- Printar valor 6.5 var_dump
+4- Printar conta de adição 2+3
+5-Printar conta de adiçao 2,5 + 5
+6- Printar conta de subtração 5-3
+7-Printar conta de subtração 6-7
+8- Printar conta de multiplicação 6*8
+9 - Printar conta de divisão 10/ 2
+
+10- Montar um array de 10 posições
+11- Montar um array com 3 arrays dentro
+12- Montar um array com 2 arrays que armazenam mais 2 arrays
+
+13- Montar um for de 5 posições
+14- montar a tabuada do 5
+15- montar todas as tabuadas
+16- Ver se o numero é impar ou par
+17- rodar um array com sálarios e ver se é mais ou menos que 500
+
+18-varificar se vai ou não receber o aumento, se for menor de 900 recebe 0.5 de aumento
