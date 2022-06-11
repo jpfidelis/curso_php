@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+    <head>
+        <!-- meta charset -->
+        <meta charset="utf-8">
+        <!-- site title -->
+        <title>Phantom | Personal Resume Template</title>
+        <!-- meta description -->
+        <meta name="description" content="">
+        <!-- mobile viwport meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- fevicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        
+        <!-- ================================
+        CSS Files
+        ================================= -->
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i|Open+Sans:400,600,700,800" rel="stylesheet">
+        <link rel="stylesheet" href="css/themefisher-fonts.min.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link id="color-changer" rel="stylesheet" href="css/colors/color-0.css">
+
+         <!-- Custom fonts for this template-->
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+        
+    </head>
+
+    <body>
+
+        <div class="preloader">
+            <div class="loading-mask"></div>
+            <div class="loading-mask"></div>
+            <div class="loading-mask"></div>
+            <div class="loading-mask"></div>
+            <div class="loading-mask"></div>
+        </div>
+
+        <div class="preview-wrapper">
+            <div class="switcher-head">
+                <span>Style Switcher</span>
+                <div class="switcher-trigger tf-tools"></div>
+            </div>
+
+            <div class="switcher-body">
+                <h4>Choose Color:</h4>
+                <ul class="color-options list-none">
+                    <li class="c0" data-color="red" title="Default">Default</li>
+                    <li class="c1" data-color="blue" title="Red">Red</li>
+                    <li class="c2" data-color="green" title="Green">Green</li>
+                    <li class="c3" data-color="yellow" title="Blue">Blue</li>
+                </ul>
+            </div>
+        </div>
+
+        
+        
+        <!-- ================================
+        JavaScript Libraries
+        ================================= -->
+        <script src="js/vendor/jquery-2.2.4.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/jquery.easing.min.js"></script>
+        <script src="js/isotope.pkgd.min.js"></script>
+        <script src="js/jquery.nicescroll.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery-validation.min.js"></script>
+        <script src="js/form.min.js"></script>
+        <script src="js/main.js"></script>
+
+        
+
+            <div class="container">
+        
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                            <div class="col-lg-7">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                    </div>
+
+                                     <!-- INICIO DO FORMULÁRIO -->
+
+                                    <form class="user" action="conexao/sql_cadastro.php" method="post">
+                                       
+
+
+                                            <!-- FIM DO ENDEREÇO -->
+                                            
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                                        placeholder="Email" name='email'>
+                                                </div>
+
+                                            </div>    
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input type="password1" class="form-control form-control-user"
+                                                    id="exampleInputSenha" placeholder="Senha" name='senha'>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="password2" class="form-control form-control-user"
+                                                    id="exampleRepeatSenha" placeholder="Repeat Senha">
+                                            </div>
+
+                                           <!-- FIM DO FORMULÁRIO -->
+                                        </div>
+                                            
+                                          
+                                        <button type="submit"  value="Submit">Submit</button>
+                                       
+                                    </form>
+                                    <hr>
+                                  
+                                    <div class="text-center">
+                                        <a class="small" href="login.html">Already have an account? Login!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        
+            <!-- Bootstrap core JavaScript-->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        
+            <!-- Custom scripts for all pages-->
+            <script src="js/sb-admin-2.min.js"></script>
+            
+            <script>
+                //Verifica se as senhas são iguais
+                    let senha = document.getElementById('password1');
+                    let senhaC = document.getElementById('password2');
+
+                    function validarSenha() {
+                    if (senha.value != senhaC.value) {
+                        senhaC.setCustomValidity("Senhas diferentes!");
+                            $('#Button').prop('disabled', true);
+                        senhaC.reportValidity();
+                        return false;
+                    } else {
+                        senhaC.setCustomValidity("");
+                            $('#Button').prop('disabled', false);
+                        return true;
+                    }
+                    }
+            
+
+                    // Verificar quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais
+                    senhaC.addEventListener('input', validarSenha);
+                
+            </script>
+        
+    </body>
+</html>

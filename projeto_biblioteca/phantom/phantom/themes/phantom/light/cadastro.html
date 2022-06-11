@@ -31,81 +31,7 @@
         <!-- Custom styles for this template-->
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-        <title>ViaCEP Webservice</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-        <!-- Adicionando Javascript -->
-        <script>
         
-            function limpa_formulário_cep() {
-                //Limpa valores do formulário de cep.
-                document.getElementById('rua').value=("");
-                document.getElementById('bairro').value=("");
-                document.getElementById('cidade').value=("");
-                document.getElementById('uf').value=("");
-                document.getElementById('ibge').value=("");
-            }
-    
-            function meu_callback(conteudo) {
-              if (!("erro" in conteudo)) {
-                //Atualiza os campos com os valores.
-                document.getElementById('rua').value=(conteudo.logradouro);
-                document.getElementById('bairro').value=(conteudo.bairro);
-                document.getElementById('cidade').value=(conteudo.localidade);
-                document.getElementById('uf').value=(conteudo.uf);
-                document.getElementById('ibge').value=(conteudo.ibge);
-              } //end if.
-              else {
-                //CEP não Encontrado.
-                limpa_formulário_cep();
-                alert("CEP não encontrado.");
-              }
-        }
-            
-        function pesquisacep(valor) {
-    
-            //Nova variável "cep" somente com dígitos.
-            var cep = valor.replace(/\D/g, '');
-    
-            //Verifica se campo cep possui valor informado.
-            if (cep != "") {
-    
-                //Expressão regular para validar o CEP.
-                var validacep = /^[0-9]{8}$/;
-    
-                //Valida o formato do CEP.
-                if(validacep.test(cep)) {
-    
-                    //Preenche os campos com "..." enquanto consulta webservice.
-                    document.getElementById('rua').value="...";
-                    document.getElementById('bairro').value="...";
-                    document.getElementById('cidade').value="...";
-                    document.getElementById('uf').value="...";
-                    document.getElementById('ibge').value="...";
-    
-                    //Cria um elemento javascript.
-                    var script = document.createElement('script');
-    
-                    //Sincroniza com o callback.
-                    script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
-    
-                    //Insere script no documento e carrega o conteúdo.
-                    document.body.appendChild(script);
-    
-                } //end if.
-                else {
-                    //cep é inválido.
-                    limpa_formulário_cep();
-                    alert("Formato de CEP inválido.");
-                }
-            } //end if.
-            else {
-                //cep sem valor, limpa formulário.
-                limpa_formulário_cep();
-            }
-        };
-    
-        </script>
     </head>
 
     <body>
@@ -167,80 +93,120 @@
 
                                      <!-- INICIO DO FORMULÁRIO -->
 
-                                    <form class="user">
+                                    <form class="user" action="conexao/sql_cadastro.php" method="POST">
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="text" class="form-control form-control-user" id="exampleNome"
-                                                    placeholder="Nome">
+                                                <input type="text" class="form-control form-control-user" id="examplenm_cliente"
+                                                    placeholder="Nome" name='nm_cliente' required>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="date" class="form-control form-control-user" id="exampleData de Nascimento"
-                                                    placeholder="Data de Nascimento">
+                                                <input type="date" class="form-control form-control-user" id="exampledt_nascimento"
+                                                    placeholder="Data de Nascimento" name='dt_nascimento'>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="text" class="form-control form-control-user" id="exampleCPF"
-                                                    placeholder="CPF">
+                                                    placeholder="CPF" name='CPF'>
                                             </div>
                                             <div class="col-sm-6">
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected>Sexo</option>
+                                                <select class="form-select" aria-label="Default select example" name='Sexo'>
+                                                    <option selected>Sexo:</option>
                                                     <option value="1">Feminino</option>
                                                     <option value="2">Masculino</option>
                                                     <option value="3">Outro</option>
-                                                  </select>
+                                                </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="text" class="form-control form-control-user" id="exampleCelular"
-                                                    placeholder="Celular">
+                                                    placeholder="Celular" name='Celular'>
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                                placeholder="Email Address">
-                                                
+                                        
+
+                                            <!-- INICIO DO ENDEREÇO -->
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="text" class="form-control form-control-user" id="exampleCEP"
+                                                            placeholder="CEP" name='CEP'>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control form-control-user" id="exampleRua"
+                                                            placeholder="Rua" name='Rua'>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="text" class="form-control form-control-user" id="exampleNumero"
+                                                            placeholder="Numero" name='Numero'>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control form-control-user" id="exampleBairro"
+                                                            placeholder="Bairro" name='Bairro'>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="text" class="form-control form-control-user" id="exampleCidade"
+                                                            placeholder="Cidade" name='Cidade'>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        
+
+                                                            <select id="inputState" class="form-control"  name='Estado'> required>
+                                                                <option>uf/estado</option>
+                                                                <option value="1"></option>
+                                                                <option value="2"></option>
+                                                                <option value="3"></option>
+                                                                <?php
+                                                                    $result_nome_estado = "SELECT id_estado, nome FROM `estado`";
+                                                                    $resultado = mysqli_query($conn, $result_nome_estado);
+                                                                    while($row_resultado = mysqli_fetch_assoc($resultado)){ ?>
+                                                                        <option value="<?php echo $row_resultado['id_estado']; ?>"><?php echo $row_resultado['nome']; ?></option> <?php
+                                                                    }
+                                                                ?>
+                                                            </select> 
+                                                    </div>
+                                                </div>
+
+
+                                            <!-- FIM DO ENDEREÇO -->
+                                            
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                                        placeholder="Email" name='Email'>
+                                                </div>
+
+                                            </div>    
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="password" class="form-control form-control-user"
-                                                    id="exampleInputPassword" placeholder="Password">
+                                                <input type="password1" class="form-control form-control-user"
+                                                    id="exampleInputSenha" placeholder="Senha" name='senha'>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="password" class="form-control form-control-user"
-                                                    id="exampleRepeatPassword" placeholder="Repeat Password">
+                                                <input type="password2" class="form-control form-control-user"
+                                                    id="exampleRepeatSenha" placeholder="Repeat Senha">
                                             </div>
 
-                                            <!-- INICIO DO ENDEREÇO -->
-                                            
-                                            <div class="form-group row">
-                                          
-                                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <input type="text" class="form-control form-control-user" id="exampleCPF"
-                                                    placeholder="CPF">
-
-                                                
-                                                </div>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control form-control-user" id="exampleInputRua"
-                                                    placeholder="Rua">
-                                                </div>
-                                            </div>
+                                           <!-- FIM DO FORMULÁRIO -->
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                            Register Account
-                                        </a>
+                                            
+                                          
+                                        <button type="submit"  value="Submit">Submit</button>
                                        
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
+                                   
                                     <div class="text-center">
                                         <a class="small" href="login.html">Already have an account? Login!</a>
                                     </div>
@@ -261,6 +227,28 @@
         
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
+
+            <script>
+                    //Verifica se as senhas são iguais
+                        let senha = document.getElementById('password1');
+                        let senhaC = document.getElementById('password2');
+                
+                        function validarSenha() {
+                        if (senha.value != senhaC.value) {
+                            senhaC.setCustomValidity("Senhas diferentes!");
+                                $('#Button').prop('disabled', true);
+                            senhaC.reportValidity();
+                            return false;
+                        } else {
+                            senhaC.setCustomValidity("");
+                                $('#Button').prop('disabled', false);
+                            return true;
+                        }
+                        }
+                
+                    // Verificar quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais
+                    senhaC.addEventListener('input', validarSenha);
+            </script>
         
         
     </body>
